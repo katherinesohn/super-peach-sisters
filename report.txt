@@ -1,0 +1,257 @@
+1. 
+///////////////////////////
+/////	STUDENTWORLD
+///////////////////////////
+
+virtual int init();
+
+Initializes member variables of StudentWorld, reads in level file and adds 
+all actors according to level file to vector that keeps track of all actors. 
+Peach pointer is stored separately from the vector. Initialize the display 
+and return continue to proceed game. This function is virtual because it is 
+pure virtual inherited from gameWorld
+
+
+virtual int move();
+
+carries out one tick of a game. Make peach do something using peach pointer, 
+make each actor in the vector do something, checking all the time if peach is 
+dead, level is over, or game is over, in which case play the right sound and return the 
+right value to the game framework. Removes any newly-dead actors and returns continue
+to game framework. This function is virtual because it is pure virtual inherited from gameWorld
+
+
+virtual void cleanUp();
+
+deletes all actor objects from vector, deletes peach from peach pointer. 
+This function is virtual because it is pure virtual inherited from gameWorld
+
+
+Actor* overlap(Actor* a1, Actor* a2) const;
+
+returns a pointer to a2 if the two actors overlap, otherwise returns a nullptr. const function 
+because no modification to the StudentWorld class.
+
+
+bool overlapsPeach(Actor* a) const;
+
+returns true if a overlaps peach, false otherwise. const function 
+because no modification to the StudentWorld class.
+
+
+Actor* damageableOverlap(Actor* a1) const;
+
+returns pointer to damageable actor (other than peach) overlapping a1
+if there is one, otherwise nullptr. const function 
+because no modification to the StudentWorld class.
+
+
+Actor* blockingActorAt(int x, int y) const;
+
+returns pointer to blocking actor overlapping box left bottom corner x,y parameters, 
+if doesn't exist, return nullptr. const function 
+because no modification to the StudentWorld class.
+
+
+Peach* getPeach() const;
+
+returns peach pointer. const function 
+because no modification to the StudentWorld class.
+
+
+void addActor(Actor* a1);
+
+adds actor parameter to vector.
+
+
+void endLevel();
+
+tells StudentWorld that the game is in state where level is over
+
+
+void endGame();
+
+tells StudentWorld that the game is in state where game is over
+
+
+
+////////////////////////////
+///	ACTOR
+////////////////////////////
+
+virtual void doSomething() = 0;
+
+Every actor does something for one tick. pure virtual function because there is no way to know what 
+a general actor will do in their tick. 
+
+
+virtual void bonk() = 0; 
+
+every actor can be bonked, pure virtual because there is no way to know what a general 
+actor will do when bonked, also to make actor an abstract class
+
+
+StudentWorld* getWorld() const;
+
+returns StudentWorld that actor belongs to, const because does not modify object
+
+
+bool isPassable() const;
+
+returns false if actor is a blocking object, true otherwise, const because does not modify object
+
+
+bool isDamageable() const;
+
+returns true if actor is damageable, false otherwise. const because does not modify object
+
+
+bool isAlive() const;
+
+returns true if actor is alive, false otherwise. const because does not modify object
+
+
+void setDead();
+
+sets actor as dead. 
+
+
+void switchDirection();
+
+switches direction left/right of actor 
+
+
+////////////////////////////////////////
+///		PEACH
+////////////////////////////////////////
+
+virtual void doSomething();
+
+peach doesn't do anything if dead, otherwise updates powers and moves or shoots based on key input. 
+virtual because inherited from Actor
+
+virtual void bonk();
+
+peach loses powers if has any, else dies 
+
+
+void getStarPower(int ticks);
+
+gives peach star power for ticks number of ticks. regular member function
+
+
+void getJumpPower(); 
+
+gives peach jump power. regular member function
+
+
+void getShootPower();
+
+gives peach shoot power. regular member function
+
+
+void setHitPoints(int hp);
+
+sets peach's hit points to hp. regular member function. 
+
+
+bool hasStarPower() const; 
+
+returns true if peach has star power, false otherwise. const because no change to actor. 
+
+
+bool hasJumpPower() const; 
+
+returns true if peach has mushroom power, false otherwise. const because no change to actor. 
+
+
+bool hasShootPower() const; 
+
+returns true if peach has flower power, false otherwise. const because no change to actor. 
+
+
+////////////////////////////////////////////
+///////		GOODIES 
+////////////////////////////////////////////
+
+
+virtual void doSomething();
+
+if goodie is overlapping peach, give peach the power, else try and move/fall. virtual because 
+inherited from actor. 
+
+
+virtual void bonk() {};
+
+all goodies do nothing when bonked. 
+
+////////////////////////////////////////
+///		STRUCTURES
+////////////////////////////////////////
+
+virtual void doSomething() {};
+
+structures do nothing during a tick. virtual because inherited from actor. 
+
+
+virtual void bonk() = 0;
+
+structures do different things when bonked. makes structure an abstract class because can not have 
+a general type of structure.
+
+
+virtual void bonk(); //BLOCK 
+
+releases goodie if block holds one, does nothing otherwise. virtual because inherited from structure
+
+
+virtual void bonk(); //PIPE
+
+pipe doesn't do anything when bonked. virtual because inherited from structure
+
+
+/////////////////////////////////
+///	   LEVELENDR
+/////////////////////////////////
+
+virtual void doSomething();
+
+if overlapping peach, tell studentworld that level/game is over according to level endr type, else nothing. 
+virtual because inherited from actor. 
+
+
+virtual void endFunction() = 0;
+
+different levelendrs have different things they end when triggered. pure virtual to make level endr an abstract
+class. 
+
+
+virtual void bonk();
+
+levelendr's do nothing when bonked. virtual because inherited from actor. 
+
+
+////////////////////////////////////////
+///		PROJECTILES
+////////////////////////////////////////
+
+virtual void doSomething();
+
+projectile moves in its direction, bonk something if overlapping with something. virtual because inherited from actor
+
+
+virtual void bonk() {};
+
+projectiles do nothing when bonked. virtual because inherited from actor. 
+
+
+
+2. no known errors 
+
+
+3. I decided to have everythink bonk itself when it overlaps peach instead of peach bonking everything else so that
+I didn't have to determine what peach was overlapping with and looping through the vector of actors all the time to see if
+peach was overlapping anything. 
+
+I also used stringstreams to make the zeros in the point display. 
+
