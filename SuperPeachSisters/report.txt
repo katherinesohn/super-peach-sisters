@@ -249,7 +249,7 @@ projectiles do nothing when bonked. virtual because inherited from actor.
 2. no known errors 
 
 
-3. I decided to have everythink bonk itself when it overlaps peach instead of peach bonking everything else so that
+3. I decided to have everything bonk itself when it overlaps peach instead of peach bonking everything else so that
 I didn't have to determine what peach was overlapping with and looping through the vector of actors all the time to see if
 peach was overlapping anything. 
 

@@ -7,6 +7,7 @@ Score: 100/100
 
 If you're a current CS 32 student, look for help from your TAs, professor, and/or TBP/HKN/UPE tutoring. This solution will not help you. Also, iterative programming is your best friend. 
 
+
 ## Project Introduction
 
 NachenGames corporate spies have learned that SmallSoft is planning to release a new
@@ -32,23 +33,8 @@ blocks. These goodies include Stars (which grant invincibility to Peach), Mushro
 (which enable Peach to double her jumping height), and Flowers which enables Peach to
 shoot fireballs at her opponents.
 
-Screenshot from the game:
+More details about the project requirements can be found in the [project spec](./project_spec.pdf). 
+
+## Sample Screenshot
 
 ![screenshot](images/screenshot.png)
-
-In the image above, we can see Peach in the bottom left of the screen. A mushroom
-(which grants Peach extra-high jumping skill) is near her to the right. We also see three
-piranhas sitting atop their pipes. Be careful, because they shoot fire from their mouths if
-Peach gets too close. The brown pointy-headed characters are goombas, and the turtles
-are koopas, both types of monster that cause Peach to shrivel up if she comes into contact
-with them (unless she has a special power due to picking up a star, mushroom or flower).
-At the top right, we see a flag which Peach must reach to complete the current level and
-advance to the next level.
-You, the player, will play the role of Peach and use the following keystrokes to control
-her Peach:
-* Left arrow key or the ‘a’ key: Moves Peach toward the left
-* Right arrow key or the ‘d’ key: Moves Peach toward the right
-* Up arrow key or the ‘w’ key: Causes peach to jump up
-* Space bar: Fires a fireball, if Peach has any
-* The ‘q’ key: Quits the game
-* The ‘f’ and 'r' keys: Freeze and resume the game to aid with debugging
