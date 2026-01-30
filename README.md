@@ -1,7 +1,5 @@
-# super-peach-sisters
-**Winter Quarter 2022 CS 32 Project 3**
-
-Prof David Smallberg, UCLA
+# Super Peach Sisters
+**Winter Quarter 2022 CS 32 Project 3** (Prof David Smallberg, UCLA)
 
 Score: 100/100
 
